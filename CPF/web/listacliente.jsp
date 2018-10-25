@@ -12,35 +12,35 @@
     <body>
         <h1> Registro </h1>
         <%
-            Connection conexao = null;
-            //debug: vazio.get ????
-            int teste = 1;
-            conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/Aula", "Kados", "0000");
-            //PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
-            PreparedStatement sql2 = conexao.prepareStatement("Select count(*) as total from contato");
-            //ResultSet resultado = sql.executeQuery();
-            ResultSet vazio = sql2.executeQuery();
-            //teste = vazio.getInt("total");
-            vazio.close();
-            if (teste <= 0){
-               out.print("<h2> BANCO VAZIO! </h2>");
-            }
-            else{
-                PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
-                ResultSet resultado = sql.executeQuery();
-                //out.print("<form name=\"Form\" action=\"dadoscliente.jsp\" method=\"GET\">\n" );
-                while (resultado.next()) {
-                    out.println("           <a type=\"submit\" name=\"CPF\" value="+resultado.getString("CPF")+" class=\"link\" href=\"dadoscliente.jsp?CPF="+resultado.getString("CPF")+"\">"+resultado.getString("CPF")+ "</a>" +
-                                " | " + resultado.getString("nome") +
-                                " | " + resultado.getInt("idade") + "</p>");
+            try{
+                Connection conexao = null;
+                //debug: vazio.get ????
+                conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/Aula", "Kados", "0000");
+                //PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
+                try{
+                    PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
+                    ResultSet resultado = sql.executeQuery();
+                    //out.print("<form name=\"Form\" action=\"dadoscliente.jsp\" method=\"GET\">\n" );
+                    while (resultado.next()) {
+                        out.println("           <a type=\"submit\" name=\"CPF\" value="+resultado.getString("CPF")+" class=\"link\" href=\"dadoscliente.jsp?CPF="+resultado.getString("CPF")+"\">"+resultado.getString("CPF")+ "</a>" +
+                                    " | " + resultado.getString("nome") +
+                                    " | " + resultado.getInt("idade") + "</p>");
+                    }
+                    //out.print("     </form>");
+                    resultado.close();
+                    sql.close();
                 }
-                //out.print("     </form>");
-                resultado.close();
+                catch (SQLException ex){
+                    out.print(ex);
+                }
+
+                //vazio.close();
+                //resultado.close();
+                conexao.close();
             }
-            
-            //vazio.close();
-            //resultado.close();
-            conexao.close();
+            catch (Exception e){
+                out.print("DEU TRETA");
+            }
         %>
     </body>
 </html>
