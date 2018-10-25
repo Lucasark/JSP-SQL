@@ -14,9 +14,7 @@
         <%
             try{
                 Connection conexao = null;
-                //debug: vazio.get ????
                 conexao = DriverManager.getConnection("jdbc:derby://localhost:1527/Aula", "Kados", "0000");
-                //PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
                 try{
                     PreparedStatement sql = conexao.prepareStatement("Select * from contato order by idade");
                     ResultSet resultado = sql.executeQuery();
@@ -33,13 +31,11 @@
                 catch (SQLException ex){
                     out.print(ex);
                 }
-
-                //vazio.close();
-                //resultado.close();
+                
                 conexao.close();
             }
             catch (Exception e){
-                out.print("DEU TRETA");
+                out.print(e);
             }
         %>
     </body>
