@@ -51,6 +51,9 @@ class Objeto{
 </head>
 <body>
 	<h1 style="font-family: 'Ubuntu', sans-serif;">LojaDW de Informática  -  Loja dos Alunos Lucas e Ygor</h1>
+        <div>
+            <a href="carrinho.jsp"><img style="width: 80px; float: right;" src="https://cdn0.iconfinder.com/data/icons/business-collection-2027/60/cart-2-512.png"></a>
+        </div>
         <form name="form" method="POST" action="carrinho.jsp">
 		<div>
 			<label>Teclado sem fio</label><br>
@@ -91,105 +94,7 @@ class Objeto{
 	</form>
 
 </body>
-<%--
 <script type="text/javascript">
-	function validarCalculo() {
-		var teclado = this.verificarTeclado(document.form.fquantTeclado.value);
-		var mouse = this.verificarMouse(document.form.fquantMouse.value);
-		var monitor =  this.verificarMonitor(document.form.fquantMonitor.value, document.form.fVoltagemM.value);
-		var impressora =  this.verificarImpressora(document.form.fquantImpressora.value, document.form.fVoltagemI.value);
-		console.log(teclado);
-		console.log(mouse);
-		console.log(monitor);
-		console.log(impressora);
-		var total = teclado + mouse + monitor[0] + impressora[0];
-		console.log(total);
-		var frete;
-		var desconto;
-                var precoDesconto;
-                var preco;
-		if(teclado == 0 && mouse == 0){
-			if(monitor[1] == 0 && monitor[0] != 0 || impressora[1] == 0 && impressora[0] != 0){
-				alert("Favor selecionar pelo menos 1 produto para comprar.");
-			}
-			else if(monitor[1] != 0 && monitor[0] == 0 || impressora[1] != 0 && impressora[0] == 0){
-				alert("Favor selecionar pelo menos 1 produto para comprar.");
-			}else {
-				alert("Favor selecionar pelo menos 1 produto para comprar.");
-			}
-                        return false;
-		}
-
-		if(teclado !=  0 || mouse != 0 || monitor[0] != 0 && monitor[1] != 0 || impressora[0] != 0 && impressora[1] != 0){
-			if(total <= 3){
-				frete  =  9.0;
-			}
-			else {
-				frete = 9.0 + 2.0 * (total - 3);
-			}
-
-			preco = ( teclado * 59.99 ) + ( mouse * 29.99 ) + ( monitor[0] * 398.90) + ( impressora[0] * 487.90);
-			if( preco > 150.0 && preco < 299.99 ){
-				precoDesconto = preco * 0.97;
-				desconto = preco * 0.03;
-			}
-			else if(preco >= 300.0) {
-				precoDesconto = preco * 0.92;
-				desconto = preco * 0.08;
-			}else{
-				desconto = 0.0;
-			}
-
-			console.log(preco);
-			console.log(frete);
-		}
-		
-	}
-
-	function verificarTeclado(teclado){
-		teclado = parseFloat(teclado);
-		return teclado;
-	}
-
-	function verificarMouse(mouse){
-		mouse = parseFloat(mouse);
-		return mouse;
-	}
-
-	function verificarMonitor(monitor, voltagem){
-		var monit = new Array();
-		if(monitor != "0" && voltagem != "" || monitor != undefined && voltagem != undefined){
-			monitor = parseFloat(monitor);
-			voltagem = Number(voltagem);
-			monit.push(monitor, voltagem);
-		}
-		else  {
-			monitor = 0; voltagem  =0;
-			monit.push(monitor, voltagem);
-		}
-		return monit;
-	}
-
-	function verificarImpressora(impressora, voltagem){
-		var imp = new Array();
-		if(impressora != "0" && voltagem != "" || impressora != undefined && voltagem != undefined){
-			impressora = parseFloat(impressora);
-			voltagem = Number(voltagem);
-			imp.push(impressora, voltagem);
-		}
-		else{
-			impressora = 0; voltagem = 0;
-			imp.push(impressora, voltagem);
-		}
-		return imp;
-	}
-
-</script>
---%>
-<script type="text/javascript">
-        function destruir(){
-            alert("Compra fechada!");
-            
-        }
+        
 </script>
 </html>
