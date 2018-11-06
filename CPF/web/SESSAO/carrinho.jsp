@@ -208,8 +208,9 @@
                 session.setAttribute("carrinho", carrinho);
             }
         }
-        
         carrinho = (List<Objeto>) session.getAttribute("carrinho");
+        //int loop = 0;
+        //boolean teste = true;
         System.out.print(">>>INICIO-TABELA<<<<");
         
         int quantidade = 0;
@@ -225,19 +226,26 @@
                 + "</tr>");
         
         System.out.print("TRATAMENTO-TABELA");
-        if(carrinho.size() != 0){
-            for(int i=0; i < carrinho.size(); i++){
-                quantidade += carrinho.get(i).quantidade;
-                double total = carrinho.get(i).preco * carrinho.get(i).quantidade;
-                valorTotal += total;
-                out.print("<tr>"
-                        + " <td>    "+ (i+1) +"</td>"
-                        + " <td>    "+ carrinho.get(i).nome +" "+carrinho.get(i).tipo + "   </td>"
-                        + " <td>    "+ carrinho.get(i).quantidade +"    </td>"
-                        + " <td>    "+ carrinho.get(i).preco +" </td>"
-                        + " <td>    "+ total +" </td>"
-                        + "</tr>");
+        try{
+            if(carrinho.size() != 0){
+                for(int i=0; i < carrinho.size(); i++){
+                    quantidade += carrinho.get(i).quantidade;
+                    double total = carrinho.get(i).preco * carrinho.get(i).quantidade;
+                    valorTotal += total;
+                    out.print("<tr>"
+                            + " <td>    "+ (i+1) +"</td>"
+                            + " <td>    "+ carrinho.get(i).nome +" "+carrinho.get(i).tipo + "   </td>"
+                            + " <td>    "+ carrinho.get(i).quantidade +"    </td>"
+                            + " <td>    "+ carrinho.get(i).preco +" </td>"
+                            + " <td>    "+ total +" </td>"
+                            + "</tr>");
+                }
             }
+        }
+        catch(Exception ex){
+            carrinho = new ArrayList<Objeto>();
+            System.out.print(carrinho.size());
+            session.setAttribute("carrinho", carrinho);
         }
         out.print("<tr> "
                 + " <td><b>Total: </b></td>"
